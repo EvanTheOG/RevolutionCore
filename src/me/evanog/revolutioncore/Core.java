@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class RevolutionCore extends JavaPlugin {
+public class Core extends JavaPlugin {
 
 	/*
 	 * RevolutionCore v1.0
@@ -12,12 +12,8 @@ public class RevolutionCore extends JavaPlugin {
 	 * 
 	 *
 	 * CheckList:
-	 * - Deathbans
-	 * - Classes
-	 * - EnchantLimiter
-	 * - MapKit
 	 * - Crates
-	 * - ....
+	 * - 
 	 * -
 	 * -
 	 * -
@@ -27,10 +23,20 @@ public class RevolutionCore extends JavaPlugin {
 	
 	
 	
-	private static RevolutionCore instance;
+	private static Core instance;
 	
-	public static RevolutionCore getInstance() {
+	public static Core getInstance() {
 		return instance;
+	}
+	
+	@Override
+	public void onEnable() {
+		instance = this;
+	}
+	
+	@Override
+	public void onDisable() {
+		instance = null;
 	}
 	
 }
