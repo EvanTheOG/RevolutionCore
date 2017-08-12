@@ -1,0 +1,6 @@
+name: RevolutionCore
+author: EvanOG
+main: me.evanog.revolutioncore.Core
+version: 1.0
+commands:
+  crate:

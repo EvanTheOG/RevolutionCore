@@ -1,5 +1,11 @@
 package me.evanog.revolutioncore;
 
-public class Manager {
-
+public abstract class Manager {
+	
+	public abstract void enable();
+	
+	public abstract void disable();
+	
+	
+	
 }
