@@ -49,6 +49,30 @@ public class CrateCommand implements CommandExecutor {
 						p.sendMessage("&cYou do not have Permission!");
 					}
 				}
+				//crate givekey evanog 
+				
+			}else if (args.length == 4) {
+				if (args[0].equalsIgnoreCase("give")) {
+					Player player = Bukkit.getPlayer(args[1]);
+					if (player.isOnline() == false) {
+						p.sendMessage(ChatColor.RED + "Player not found.");
+						return false;
+					}
+					Crate crate = Core.getInstance().getCrateManager().getCrateByName(args[2]);
+					if (crate == null) {
+						p.sendMessage(ChatColor.RED + "Crate not found.");
+						return false;
+					}
+					try {
+						Integer.valueOf(args[3]);
+						Core.getInstance().getCrateManager().giveKey(player, crate, Integer.valueOf(args[3]));
+						player.sendMessage(ChatColor.YELLOW + "You have been given " + args[3] + " " + crate.getName() + " keys!");
+						p.sendMessage(ChatColor.YELLOW + "Gave keys to " + player.getName() + ".");
+					}catch(NumberFormatException e) {
+						p.sendMessage(ChatColor.RED + "3rd argument must be an integer!");
+					}
+					
+				}
 			}
 		}
 		return false;

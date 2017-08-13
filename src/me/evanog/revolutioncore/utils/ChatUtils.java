@@ -11,7 +11,7 @@ public class ChatUtils {
 		return ChatColor.translateAlternateColorCodes('&', s);
 	}
 	
-	public static Iterable<String> formatList(Iterable<String> list) {
+	public static List<String> formatList(Iterable<String> list) {
 		List<String> toReturn = new ArrayList<>();
 		for (String s : list) {
 			toReturn.add(format(s));

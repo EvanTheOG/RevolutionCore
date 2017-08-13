@@ -44,8 +44,9 @@ public class CrateManager extends Manager {
 			List<Reward> rewards = new ArrayList<>();
 			ItemStack key = new ItemBuilder(Material.TRIPWIRE_HOOK, 1)
 					.setName(ChatUtils.format(config.getString("Crates." + s + ".Key.Name")))
-					.setLore(config.getStringList("Crates." + s + ".Key.Lore")).toItemStack();
+					.setLore(ChatUtils.formatList(config.getStringList("Crates." + s + ".Key.Lore"))).toItemStack();
 			List<Location> locations = new ArrayList<Location>();
+			
 			crate = new Crate(name, rewards,key,locations);
 			crates.add(crate);
 		}
