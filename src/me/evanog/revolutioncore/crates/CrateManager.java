@@ -34,6 +34,7 @@ public class CrateManager extends Manager {
 		this.initDefaultCrateFile();
 		this.loadCrates();
 		Core.getInstance().getCommand("crate").setExecutor(new CrateCommand());
+		Core.getInstance().getServer().getPluginManager().registerEvents(new CrateListeners(), Core.getInstance());
 	}
 
 	private void loadCrates() {
@@ -46,8 +47,8 @@ public class CrateManager extends Manager {
 					.setName(ChatUtils.format(config.getString("Crates." + s + ".Key.Name")))
 					.setLore(ChatUtils.formatList(config.getStringList("Crates." + s + ".Key.Lore"))).toItemStack();
 			List<Location> locations = new ArrayList<Location>();
-			
-			crate = new Crate(name, rewards,key,locations);
+
+			crate = new Crate(name, rewards, key, locations);
 			crates.add(crate);
 		}
 	}
@@ -92,9 +93,12 @@ public class CrateManager extends Manager {
 		return null;
 	}
 
-	public void giveAll(Crate crate) {
+	public void giveAll(Crate crate, int key) {
+
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			p.getInventory().addItem(crate.getKey());
+			for (int i = 0; i < key; i++) {
+				p.getInventory().addItem(crate.getKey());
+			}
 			p.sendMessage(ChatColor.YELLOW + "You were given a " + crate.getName() + " key in a GiveAll!");
 		}
 	}
@@ -105,4 +109,22 @@ public class CrateManager extends Manager {
 		}
 	}
 
+	public void giveCrate(Player p, Crate crate) {
+		p.getInventory()
+				.addItem(new ItemBuilder(Material.CHEST, 1)
+						.setName(ChatUtils.format("&e&n" + crate.getName() + "&r&e Crate"))
+						.setLore(ChatUtils.format("&7Place me somewhere to register me!"), " ", "Official Crate").toItemStack());
+	}
+	
+	public boolean isCrate(ItemStack item) {
+		if (!item.hasItemMeta()) {
+			return false;
+		}
+		if (item.getItemMeta().getLore().contains("Official Crate")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 }
