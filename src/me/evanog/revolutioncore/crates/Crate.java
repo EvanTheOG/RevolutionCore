@@ -11,17 +11,22 @@ public class Crate {
 	private List<Reward> rewards;
 	private ItemStack key;
 	private List<Location> crateLocations;
+	private int rewardsAmount = 1;
 
-	public Crate(String name, List<Reward> rewards, ItemStack key, List<Location> crateLocations) {
+	public Crate(String name, List<Reward> rewards, ItemStack key, List<Location> crateLocations, int rewardsAmount) {
 		super();
 		this.name = name;
 		this.rewards = rewards;
+		this.rewardsAmount = rewardsAmount;
 		this.key = key;
 		this.crateLocations = crateLocations;
 	}
 
 	public String getName() {
 		return name;
+	}
+	public int getRewardsAmount() {
+		return this.rewardsAmount;
 	}
 
 	public List<Reward> getRewards() {
@@ -40,7 +45,7 @@ public class Crate {
 		if (!this.crateLocations.contains(loc)) 
 		this.crateLocations.add(loc);
 	}
-	public void remove(Location loc) {
+	public void removeLocation(Location loc) {
 		if (this.crateLocations.contains(loc)) 
 		this.crateLocations.remove(loc);
 	}
@@ -59,8 +64,12 @@ public class Crate {
 			this.chance = chance;
 		}
 
-		public static List<Reward> chooseRandomRewards(int amount, Crate crate) {
-			return null;
+		public double getChance() {
+			return chance;
+		}
+		
+		public ItemStack getItemStack() {
+			return item;
 		}
 
 	}

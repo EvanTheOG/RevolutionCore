@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +13,6 @@ import org.bukkit.entity.Player;
 import me.evanog.revolutioncore.Core;
 import me.evanog.revolutioncore.crates.Crate;
 import me.evanog.revolutioncore.utils.ChatUtils;
-import net.md_5.bungee.api.ChatColor;
 
 public class CrateCommand implements CommandExecutor {
 	
